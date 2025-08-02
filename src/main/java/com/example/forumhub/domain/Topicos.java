@@ -1,4 +1,4 @@
-package com.example.forumhub;
+package com.example.forumhub.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -23,26 +23,26 @@ public class Topicos {
     private Integer id;
 
     @Column(name = "titulo")
-    @NotNull
+    @NotNull(message = "Campo Obrigatorio")
     private String titulo;
 
-    @NotNull
+    @NotNull(message = "Campo Obrigatorio")
     @Column(name = "mensagem")
     private String mensagem;
 
-    @NotNull
+    @NotNull(message = "Campo Obrigatorio")
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
 
-    @NotNull
+    @NotNull(message = "Campo Obrigatorio")
     @Column(name = "estado_topico")
     private String estado;
 
-    @NotNull
+    @NotNull(message = "Campo Obrigatorio")
     @Column(name = "autor")
     private String autor;
 
-    @NotNull
+    @NotNull(message = "Campo Obrigatorio")
     @Column(name = "curso")
     private String curso;
 
