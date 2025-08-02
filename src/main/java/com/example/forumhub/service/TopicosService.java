@@ -1,8 +1,10 @@
 package com.example.forumhub.service;
 
 import com.example.forumhub.domain.Topicos;
+import com.example.forumhub.dto.AtualizacaoTopicos;
 import com.example.forumhub.infra.IdInformadoInvalido;
 import com.example.forumhub.repository.TopicoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ public class TopicosService {
     TopicosService(TopicoRepository repository) {
         this.repository = repository;
     }
+
 
     public Boolean criarTopico(Topicos topico){
         repository.save(topico);
@@ -35,7 +38,7 @@ public class TopicosService {
         }
 
     }
-
+    @Transactional
     public Boolean deletar(Integer id){
         if(repository.existsById(id)){
             repository.deleteById(id);
@@ -44,4 +47,16 @@ public class TopicosService {
             throw new IdInformadoInvalido("O Id informado esta invalido");
         }
     }
+
+    @Transactional
+    public Boolean atualizarTopico(Integer id, AtualizacaoTopicos dados){
+        if(repository.existsById(id)){
+            Topicos topicos = repository.findById(id).get();
+            topicos.atualizarTopico(dados);
+            return true;
+        }else{
+            throw new IdInformadoInvalido("O Id informado esta invalido");
+        }
+    }
+
 }

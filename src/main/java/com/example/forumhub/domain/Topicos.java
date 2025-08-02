@@ -1,5 +1,6 @@
 package com.example.forumhub.domain;
 
+import com.example.forumhub.dto.AtualizacaoTopicos;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -45,5 +46,11 @@ public class Topicos {
     @NotNull(message = "Campo Obrigatorio")
     @Column(name = "curso")
     private String curso;
+
+    public void atualizarTopico(AtualizacaoTopicos dados){
+        this.mensagem = dados.mensagem();
+        this.curso = dados.curso();
+        this.estado = dados.estado();
+    }
 
 }
